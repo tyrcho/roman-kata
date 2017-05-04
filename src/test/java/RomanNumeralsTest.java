@@ -1,6 +1,6 @@
-import static org.junit.Assert.*;
-
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class RomanNumeralsTest {
     @Test
@@ -19,17 +19,16 @@ public class RomanNumeralsTest {
         check(100, "C");
         check(256, "CCLVI");
         check(456, "CDLVI");
-   }
+    }
 
-
-    private void check(int i, String expected) {
-        String res = Converter.toRoman(i);
-        assertEquals(expected, res);
+    private void check(int number, String expected) {
+        String actual = Converter.toRoman(number);
+        assertEquals(expected, actual);
     }
 
     @Test
     public void repeatChar_4I_result_IIII() {
-        String res = Converter.repeat('I', 4);
-        assertEquals("IIII", res);
+        String actual = Converter.repeat('I', 4);
+        assertEquals("IIII", actual);
     }
 }
