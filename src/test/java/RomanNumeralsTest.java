@@ -2,36 +2,29 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class RomanNumeralsTest {
     @Test
-    public void testSeveral() {
-        HashMap<Integer, String> numbers = new HashMap<>();
-        numbers.put(1, "I");
-        numbers.put(2, "II");
-        numbers.put(4, "IV");
-        numbers.put(5, "V");
-        numbers.put(9, "IX");
-        numbers.put(8, "VIII");
-        numbers.put(38, "XXXVIII");
-        numbers.put(42, "XLII");
-        numbers.put(50, "L");
-        numbers.put(59, "LIX");
-        numbers.put(91, "XCI");
-        numbers.put(100, "C");
-        numbers.put(256, "CCLVI");
-        numbers.put(456, "CDLVI");
-        for (Map.Entry<Integer, String> num : numbers.entrySet()) {
-            checkRomanConversion(num.getKey(), num.getValue());
-        }
-    }
+    public void toRomanUntil500() {
+        check(1, "I");
+        check(2, "II");
+        check(4, "IV");
+        check(5, "V");
+        check(9, "IX");
+        check(8, "VIII");
+        check(38, "XXXVIII");
+        check(42, "XLII");
+        check(50, "L");
+        check(59, "LIX");
+        check(91, "XCI");
+        check(100, "C");
+        check(256, "CCLVI");
+        check(456, "CDLVI");
+   }
 
 
-    private void checkRomanConversion(int i, String result) {
-        String res = new Converter().convertToRoman(i);
-        assertEquals(result, res);
+    private void check(int i, String expected) {
+        String res = Converter.toRoman(i);
+        assertEquals(expected, res);
     }
 
     @Test

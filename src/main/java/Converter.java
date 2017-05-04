@@ -1,38 +1,23 @@
-
-import lombok.AllArgsConstructor;
-
-import java.util.Optional;
-
-@AllArgsConstructor
 public class Converter {
-    private final char one;
-    private final char five;
-    private final int ratio;
-    private final Optional<Converter> next;
+    private static final char[] ones = {'I', 'X', 'C', 'M'};
+    private static final char[] fives = {'V', 'L', 'D'};
 
-    static Converter units = new Converter('I', 'V', 1, Optional.empty());
-    static Converter tens = new Converter('X', 'L', 10, Optional.of(units));
-    static Converter hundreds = new Converter('C', 'D', 100, Optional.of(tens));
-    Converter() {
-        this('M', ' ', 1000, Optional.of(hundreds));
+    public static String toRoman(int n) {
+        return convertRec(n, 'M', ones.length - 1, 1000);
     }
 
-    public String convertToRoman(int number) {
-        return convertToRoman(number, 'M');
+    private static String convertRec(int n, char nextUnit, int i, int ratio) {
+        int num = n / ratio;
+        String converted = num < 4 ? repeat(ones[i], num)
+                : num == 4 ? ones[i] + "" + fives[i]
+                : num == 9 ? ones[i] + "" + nextUnit
+                : fives[i] + repeat(ones[i], num % 5);
+        return i > 0
+                ? converted + convertRec(n % ratio, ones[i], i - 1, ratio / 10)
+                : converted;
     }
 
-    String convertToRoman(int number, char nextUnit) {
-        int i = number / ratio;
-        String mine = i < 4 ? repeat(one, i)
-                : i == 4 ? one + "" + five
-                : i == 9 ? one + "" + nextUnit
-                : five + repeat(one, i % 5);
-        return next.isPresent()
-                ? mine + next.get().convertToRoman(number % ratio, one)
-                : mine;
-    }
-
-    public static String repeat(char c, int n) {
+    static String repeat(char c, int n) {
         return new String(new char[n]).replace('\0', c);
     }
 }
