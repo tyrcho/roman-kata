@@ -22,13 +22,13 @@ public class RomanNumeralsTest {
     }
 
     private void check(int number, String expected) {
-        String actual = Converter.toRoman(number);
+        String actual = RomanNumerals.toRoman(number);
         assertEquals(expected, actual);
     }
 
     @Test
     public void repeatChar_4I_result_IIII() {
-        String actual = Converter.repeat('I', 4);
+        String actual = RomanNumerals.repeat(4, "I");
         assertEquals("IIII", actual);
     }
 }
