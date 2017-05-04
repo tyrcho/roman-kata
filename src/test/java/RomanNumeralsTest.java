@@ -1,11 +1,9 @@
 import static org.junit.Assert.*;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class RomanNumeralsTest {
     @Test
@@ -26,25 +24,19 @@ public class RomanNumeralsTest {
         numbers.put(256, "CCLVI");
         numbers.put(456, "CDLVI");
         for (Map.Entry<Integer, String> num : numbers.entrySet()) {
-            checkRomanConvertion(num.getKey(), num.getValue());
+            checkRomanConversion(num.getKey(), num.getValue());
         }
     }
 
 
-    private void checkRomanConvertion(int i, String result) {
-        // GIVEN
-        // WHEN
-        String res = RomanNumerals.toRomanNumeral(i);
-        // THEN
+    private void checkRomanConversion(int i, String result) {
+        String res = new Converter().convertToRoman(i);
         assertEquals(result, res);
     }
 
     @Test
     public void repeatChar_4I_result_IIII() {
-        // GIVEN
-        // WHEN
-        String res = RomanNumerals.repeat("I", 4);
-        // THEN
+        String res = Converter.repeat('I', 4);
         assertEquals("IIII", res);
     }
 }
