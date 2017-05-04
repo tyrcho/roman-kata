@@ -24,6 +24,7 @@ public class RomanNumeralsTest {
         numbers.put(91, "XCI");
         numbers.put(100, "C");
         numbers.put(256, "CCLVI");
+        numbers.put(456, "CDLVI");
         for (Map.Entry<Integer, String> num : numbers.entrySet()) {
             checkRomanConvertion(num.getKey(), num.getValue());
         }
